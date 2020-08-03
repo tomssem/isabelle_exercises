@@ -12,13 +12,11 @@ fun snoc :: "'a list => 'a => 'a list"
 
 text \<open>Prove the following theorem:\<close>
 
-lemma "\<And>ys xs. rev xs @ [x] = snoc (rev xs) x \<Longrightarrow> rev xs @ rev ys @ [x] = snoc (rev xs @ ys) x"
-by try
+lemma [simp]:"snoc xs x = xs @ [x]"
+  apply(induction xs) by auto
 
 theorem rev_cons: "rev (x # xs) = snoc (rev xs) x"
-  apply (induct "xs")
-   apply (simp)
-  apply(simp)
+  apply (induction xs) by auto
 
 
 text \<open>Hint: you need to prove a suitable lemma first.\<close>
